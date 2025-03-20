@@ -1,7 +1,63 @@
-<!DOCTYPE html>
-<html>
-<body>
-<h1>Hello World2</h1>
-<p>I'm hosted with GitHub Pages.</p>
-</body>
+<!doctype html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <title>Phoenix editor</title>
+        <link rel="stylesheet" href="styles.css" />
+        <script src="script.js"></script>
+    <style>
+        #countdown {
+            display: none;
+        }
+    </style>
+    <script>
+        function startCountdown(event, url) {
+            event.preventDefault(); // Отменяем мгновенный переход
+            
+            let countdownElement = document.getElementById("countdown");
+            countdownElement.style.display = "block"; // Показываем таймер
+            
+            let countdownText = document.getElementById("message");
+            
+            let timeLeft = 60; // Время до перехода (в секундах)
+            countdownText.textContent = "Переход через " + timeLeft + " секунд...";
+            
+            let interval = setInterval(function () {
+                timeLeft--; // Уменьшаем время
+                countdownText.textContent = "Переход через " + timeLeft + " секунд...";
+                
+                if (timeLeft <= 0) {
+                    clearInterval(interval);
+                    window.location.href = url; // Переход на новую страницу
+                }
+            }, 1000);
+        }
+    </script>
+    </head>
+
+    <body>
+        <div id="sidebar">
+        <h2>Навигация</h2>
+        <ul>
+            <li><a href="/">Главная</a></li>
+            <li><a href="#">Высеченные на скале слова</a></li>
+        </ul>
+        </div>
+        <div id="mainDiv">
+            <img id="logo" alt="logo" src="images/FILE130.JPG" />
+            <div id="MainText">
+                <h1>Satyr's cave</h1>
+                <span>Где заканчивается одна история, начинается что-то совсем иное<br /></span><br />
+            </div>
+            <div class="favorite styled" type="button">
+                <a href="introduction.html" onclick="return startCountdown(event, 'introduction.html');">Перейти к началу</a>
+            </div>
+            <br>
+            <div id="countdown">
+                <p id="message"></p>
+                <p>А пока сделай разминку для глаз, встань, походи, разомни плечи, приготовь себя к погружению</p>
+            </div>
+        </div>
+        
+    </body>
 </html>
